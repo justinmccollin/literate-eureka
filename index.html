@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script>
+      const CONFIGURATION = {
+        "locations": [
+          {"title":"Surisan","address1":"505 Beach St","address2":"San Francisco, CA 94133, USA","coords":{"lat":37.80686738993773,"lng":-122.417676025795},"placeId":"ChIJXXUP7-OAhYARv-2W0noK888","actions":[{"label":"Order online","defaultUrl":"https://www.google.com/viewer/chooseprovider?mid\u003d/g/11ddxtyxbp"},{"label":"Reserve a table","defaultUrl":"https://www.google.com/maps/reserve/v/dine/c/RYXEcFTTJnU?source\u003dgmpqb"}]}
+        ],
+        "mapOptions": {"center":{"lat":38.0,"lng":-100.0},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":false,"zoom":4,"zoomControl":true,"maxZoom":17,"mapId":""},
+        "mapsApiKey": "MAPS_API_KEY",
+        "capabilities": {"input":true,"autocomplete":true,"directions":false,"distanceMatrix":true,"details":false,"actions":true}
+      };
+
+    </script>
+  </head>
+  <body>
+    <!-- Please note unpkg.com is unaffiliated with Google Maps Platform. -->
+    <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6"></script>
+
+    <!-- Uses components from the Extended Component Library; see
+         https://github.com/googlemaps/extended-component-library for more information
+         on these HTML tags and how to configure them. -->
+    <gmpx-api-loader key="MAPS_API_KEY" solution-channel="GMP_QB_locatorplus_v10_cABDF"></gmpx-api-loader>
+    <gmpx-store-locator map-id="DEMO_MAP_ID"></gmpx-store-locator>
+  </body>
+  <script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    await customElements.whenDefined('gmpx-store-locator');
+    const locator = document.querySelector('gmpx-store-locator');
+    locator.configureFromQuickBuilder(CONFIGURATION);
+  });
+  </script>
+</html>
